@@ -1,36 +1,43 @@
-# BnB Plateform
+# BnB platform
 
 ## Entities
 
 ### Review
-This entity represents a review made by a traveler to a booking from a room.
 
-| Property   | Type      | Description                | Relationship |
-| ---------- | --------  | -------------------------- | ------------ |
-| title      | string    | 50 NOT NULL                |              |
-| comment    | text      | NOT NULL                   |              |
-| rating     | integer   | NOT NULL                   |              |
-| created_at | datetime  | NOT NULL                   |              |
-| traveler   | ManyToOne | NOT NULL, OrphelanTrue     | User         |
-| rooms      | ManyToOne | NOT NULL, OrphelanTrue     | Room         |
+This entity represents a review made by a traveler to a booking for a room.
+
+| Property   | Type     | Description          | Relation |
+| ---------- | -------  | -------------------- | -------- |
+| title      | string   | 50 NOT NULL          |          |
+| comment    | text     | NOT NULL             |          |
+| rating     | integer  | NOT NULL             |          |
+| created_at | datetime | NOT NULL             |          |
+| traveler   | ManyToOne| NOT NULL, OrphanTrue | User     |
+| rooms      | ManyToOne| NOT NULL, OrphanTrue | Room     |
+| booking    | OneToOne | NOT NULL, OrphanTrue | Booking  |
+
 
 ### Booking
 
-| Property    | Type      | Description             | Relationship |
-| ----------- | --------  | ------------------------| ------------ |
-| number      | string    | 50 NOT NULL             |              |
-| chek_in     | datetime  | NOT NULL                |              |
-| chek_out    | datetime  | NOT NULL                |              |
-| occupants   | ingteger  | NOT NULL                |              |
-| created_at  | datetime  | NOT NULL                |              |
-| traveler    | ManyToOne | NOT NULL, OrphelanTrue  |User          |
-| room        | ManyToOne | NULL, OrphelanTrue      |Room          |
-| review      | OneToOne  | NULL, OrphelanTrue      |Review        |
+This entity represents a booking made by a traveler to a room.
 
-### Equipement
-This entity 
+| Property   | Type     | Description          | Relation |
+| ---------- | -------  | -------------------- | -------- |
+| number     | string   | 50 NOT NULL          |          |
+| check_in   | datetime | NOT NULL             |          |
+| check_out  | datetime | NOT NULL             |          |
+| occupants  | integer  | NOT NULL             |          |
+| created_at | datetime | NOT NULL             |          |
+| traveler   | ManyToOne| NOT NULL, OrphanTrue | User     |
+| room       | ManyToOne| NULL, OrphanTrue     | Room     |
+| review     | OneToOne | NULL, OrphanTrue     | Review   |
 
-| Property  | Type      | Description   | Relationship |
-| ----------| --------- | --------------| ------------ |
-| name      | string    | 50 NOT NULL   |              |
-| rooms     | ManyToOne | NOT NULL      | Room         |
+
+### Equipment
+
+This entity represents the equipments for a room.
+
+| Property   | Type      | Description | Relation |
+| ---------- | --------  | ----------- | -------- |
+| name       | string    | 50 NOT NULL |          |
+| rooms      | ManyToMany|             | Room     |
